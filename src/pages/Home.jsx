@@ -6,13 +6,15 @@ import { Carrusel } from "../components/Carrusel.jsx";
 
 export const Home = () => {
 
-  const {store, dispatch} =useGlobalReducer()
-  
+   const {store, dispatch} =useGlobalReducer()
+ 
 
   useEffect(()=>{
 	getDatos("people");
 	getDatos("planets");
 	getDatos("vehicles");
+	console.log(store.favoritos);
+	
   },[])
 
   const getDatos = async (seleccion) => {
@@ -20,13 +22,18 @@ export const Home = () => {
 	
 	console.log(result);
 	
-	const formatData=result.map(item => ({...item.properties, description:item.description}));
+	const formatData=result.map(item => ({...item.properties, description:item.description, id:item._id}));
 	console.log(formatData);
 	
 	
 	dispatch({type:"setData", payload:{key:seleccion,data:formatData}})
 	console.log(store.people);
 	
+  }
+
+  const datosEnviados =(id, name)=>{
+	console.log(id,name);
+	dispatch({type:"selectFavorite", payload:{id,name}})
   }
 
 	return (
@@ -36,12 +43,12 @@ export const Home = () => {
 		// </div>
 		<div className="container-fluid">
 			<div className="row justify-content-center">
-				<div className="col-lg-6 mt-5">
-					<div><h1 className="title-selection">Characters</h1><Carrusel data={store.people || []}/></div>
+				<div className="col-lg-8 mt-5">
+					<div><h1 className="title-selection">Characters</h1><Carrusel data={store.people || []} actionFavorito={datosEnviados} favoritos={store.favoritos}/></div>
 					
-					<div className="mt-5"><h1 className="title-selection">Planets</h1><Carrusel data={store.planets || []}/></div>
+					<div className="mt-5"><h1 className="title-selection">Planets</h1><Carrusel data={store.planets || []} actionFavorito={datosEnviados} favoritos={store.favoritos}/></div>
 					
-					<div className="mt-5"><h1 className="title-selection">Vehicles</h1><Carrusel data={store.vehicles || []}/></div>
+					<div className="mt-5"><h1 className="title-selection">Vehicles</h1><Carrusel data={store.vehicles || []} actionFavorito={datosEnviados} favoritos={store.favoritos}/></div>
 					 
 				</div>
 			</div>

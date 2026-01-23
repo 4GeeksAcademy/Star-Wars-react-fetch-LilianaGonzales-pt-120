@@ -32,3 +32,24 @@
 .datos-import{
     margin-bottom: 0px;
 }
+.footer-card{
+    display: flex;
+    justify-content: space-between;
+}
+.corazon-rojo{
+    color: red;
+    cursor: pointer;
+}
+.corazon-blanco{
+    color: #ebd0d0;
+    cursor: pointer;
+}
+.contador{
+    width: 22px;
+    background-color: grey;
+    border-radius: 4px;
+    height: 23px;
+    text-align: center;
+    margin-left: 4px;
+    font-weight: 500;
+}

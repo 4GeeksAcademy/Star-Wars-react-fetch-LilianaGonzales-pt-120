@@ -1,7 +1,21 @@
+import { useState } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg"
-export const Carrusel = ({data}) => {
-    console.log(data);
+export const Carrusel = ({data,actionFavorito, favoritos}) => {
+    console.log(favoritos);
     
+
+
+    const viewLike = (id) =>{
+       return favoritos?.some(fav => fav.id === id);
+    }
+    
+
+
+
+
+
+
+
     return (
     // <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
     //     <div className="carousel-inner">
@@ -74,13 +88,28 @@ export const Carrusel = ({data}) => {
                 <img src={rigoImageUrl} className="card-img-top" alt={item.name} />
                 <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
-                    <div>
-                        <p className="datos-import">Gender: {item.gender}</p>
-                        <p className="datos-import">Hair-color: {item.hair_color}</p>
-                        <p className="datos-import">Eye-color: {item.eye_color}</p>
+                    <div>{item.gender? <p className="datos-import">Gender: {item.gender}</p>:(item.population?<p className="datos-import">Population: {item.population}</p>:<p className="datos-import">Model: {item.model}</p>)}
+                        {item.hair_color? <p className="datos-import">Hair-color: {item.hair_color}</p>:(item.terrain?<p className="datos-import">Terrain: {item.terrain}</p>:<p className="datos-import">Passengers: {item.passengers}</p>)}
+                        {item.eye_color? <p className="datos-import">Eye-color: {item.eye_color}</p>:null}
+                        
                     </div>
-                    <div>
-                        <a href="#" className="btn btn-primary mt-4">Go somewhere</a>
+                    <div className="footer-card">
+                        <a href="#" className="btn btn-primary mt-4">Leran more!</a>
+                        {/* <i className="fa-regular fa-heart mt-4"></i> */}
+
+                        {/* <i className="fa-solid fa-heart mt-4 corazon-blanco" title="dislike" ></i>
+                        <i className="fa-solid fa-heart mt-4 corazon-rojo" title="like" ></i> */}
+
+
+
+                        {/* <i className="fa-heart fa-solid text-danger mt-4"></i>
+                        <i className="fa-heart fa-regular mt-4"></i> */}
+                        
+                        <i className={viewLike(item.id)?'fa-heart fa-solid text-danger mt-4':'fa-heart fa-regular mt-4'} title={viewLike(item.id)?"like":"dislike"} 
+                        onClick={()=>actionFavorito(item.id,item.name)}></i>
+                        
+                        {/* <i className={state?'fa-heart fa-solid text-danger mt-4':'fa-heart fa-regular mt-4'} title={state?"like":"dislike"} onClick={actionFavorito}></i> */}
+
                     </div>
                 </div>
                 </div>
