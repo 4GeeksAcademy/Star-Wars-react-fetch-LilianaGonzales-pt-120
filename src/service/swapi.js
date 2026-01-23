@@ -4,7 +4,6 @@ export const getListCharacter = async(seleccion) =>{
     const getDatalocalStorage = localStorage.getItem(seleccion);
 
     if (getDatalocalStorage) {
-      console.log(`Usando cache para ${seleccion}`);
       return JSON.parse(getDatalocalStorage);
     }
 

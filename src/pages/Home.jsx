@@ -6,41 +6,26 @@ import { Carrusel } from "../components/Carrusel.jsx";
 
 export const Home = () => {
 
-   const {store, dispatch} =useGlobalReducer()
-
+	const {store, dispatch} =useGlobalReducer()
 
   useEffect(()=>{
 	getDatos("people");
 	getDatos("planets");
 	getDatos("vehicles");
-	console.log(store.favoritos);
 	localStorage.removeItem('seleccion')
   },[])
 
   const getDatos = async (seleccion) => {
     const result = await getListCharacter(seleccion);
-	
-	console.log(result);
-	
 	const formatData=result.map(item => ({...item.properties, description:item.description, id:item._id, uid:item.uid}));
-	console.log(formatData);
-	
-	
 	dispatch({type:"setData", payload:{key:seleccion,data:formatData}})
-	console.log(store.people);
-	
   }
 
   const datosEnviados =(id, name)=>{
-	console.log(id,name);
 	dispatch({type:"selectFavorite", payload:{id,name}})
   }
 
 	return (
-		// <div className="text-center mt-5">
-		// 	<h1>Hello Rigo!!</h1>
-		// 	<Carrusel/>
-		// </div>
 		<div className="container-fluid">
 			<div className="row justify-content-center">
 				<div className="col-lg-8 mt-5">

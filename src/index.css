@@ -27,7 +27,7 @@
   background: #555;
 }
 .title-selection{
-    color: red;
+    color: #dd1b1b;
 }
 .datos-import{
     margin-bottom: 0px;
@@ -52,4 +52,11 @@
     text-align: center;
     margin-left: 4px;
     font-weight: 500;
+}
+.encabezado{
+    color: #dd1b1b;
+    font-weight: 500;
+}
+.item{
+    color: #dd1b1b;
 }
