@@ -7,14 +7,14 @@ import { Carrusel } from "../components/Carrusel.jsx";
 export const Home = () => {
 
    const {store, dispatch} =useGlobalReducer()
- 
+
 
   useEffect(()=>{
 	getDatos("people");
 	getDatos("planets");
 	getDatos("vehicles");
 	console.log(store.favoritos);
-	
+	localStorage.removeItem('seleccion')
   },[])
 
   const getDatos = async (seleccion) => {
@@ -22,7 +22,7 @@ export const Home = () => {
 	
 	console.log(result);
 	
-	const formatData=result.map(item => ({...item.properties, description:item.description, id:item._id}));
+	const formatData=result.map(item => ({...item.properties, description:item.description, id:item._id, uid:item.uid}));
 	console.log(formatData);
 	
 	

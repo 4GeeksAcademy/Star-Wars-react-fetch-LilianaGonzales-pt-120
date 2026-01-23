@@ -1,8 +1,13 @@
 import { useState } from "react";
-import rigoImageUrl from "../assets/img/rigo-baby.jpg"
+import rigoImageUrl from "../assets/img/rigo-baby.jpg";
+import { useNavigate } from "react-router-dom";
+
+
+
+
 export const Carrusel = ({data,actionFavorito, favoritos}) => {
     console.log(favoritos);
-    
+    const navigate = useNavigate();
 
 
     const viewLike = (id) =>{
@@ -10,7 +15,12 @@ export const Carrusel = ({data,actionFavorito, favoritos}) => {
     }
     
 
-
+    const verDetalle = async(item) => {
+        console.log('ingresooo  a ver detalles');
+        console.log(item);
+        localStorage.setItem('seleccion',JSON.stringify(item))
+        navigate(`/details/${item.uid}`)
+    }
 
 
 
@@ -94,7 +104,10 @@ export const Carrusel = ({data,actionFavorito, favoritos}) => {
                         
                     </div>
                     <div className="footer-card">
-                        <a href="#" className="btn btn-primary mt-4">Leran more!</a>
+                        {/* <a href="#" className="btn btn-primary mt-4">Leran more!</a> */}
+
+                        <button type="button" className="btn btn-outline-primary mt-4" onClick={()=>verDetalle(item)}>Leran more!</button>
+
                         {/* <i className="fa-regular fa-heart mt-4"></i> */}
 
                         {/* <i className="fa-solid fa-heart mt-4 corazon-blanco" title="dislike" ></i>

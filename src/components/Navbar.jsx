@@ -8,10 +8,6 @@ export const Navbar = () => {
 
 	const {store, dispatch} =useGlobalReducer()
 
-	const eliminarFavorito = (id) => {
-	console.log(id);
-	// setTareas(tareas.filter(element=>element.id!=id));
-	}
 
 	return (
 		<nav className="navbar navbar-light bg-light">
